@@ -33,6 +33,7 @@ And for a scikit-learn usage, you can do like the following:
   
     import joblib_modal  # noqa
     import modal
+    from joblib import parallel_config
     from sklearn.model_selection import GridSearchCV
     from sklearn.ensemble import HistGradientBoostingClassifier
 
