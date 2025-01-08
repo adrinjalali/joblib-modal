@@ -33,8 +33,13 @@ And for a scikit-learn usage, you can do like the following:
   
     import joblib_modal  # noqa
     import modal
+    import numpy 
+    import joblib 
+    import scipy
+    import sklearn
     from sklearn.model_selection import GridSearchCV
     from sklearn.ensemble import HistGradientBoostingClassifier
+    from sklearn.datasets import make_classification
 
     image = (
         modal.Image.debian_slim()
@@ -45,8 +50,11 @@ And for a scikit-learn usage, you can do like the following:
     )
 
     param_grid = {'learning_rate': [0.01, 0.05, 0.1], 'max_depth': [3, 5, 7]}
+
     clf = HistGradientBoostingClassifier()
     grid_search = GridSearchCV(clf, param_grid, cv=5, n_jobs=2)
+    X, y = make_classification()
+
     with parallel_config(
         backend="modal",
         n_jobs=-1,
