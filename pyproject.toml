@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "joblib_modal"
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = [
+    "joblib",
+    "modal"
+]
+
+[tool.hatch.version]
+path = "joblib_modal/__init__.py"
+
+[dependency-groups]
+tests = ["pytest", "scikit-learn"]
+dev = [{include-group = "tests"}, "ipython"]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+
+[tool.pixi.pypi-dependencies]
+joblib_modal = { path = ".", editable = true }
+
+[tool.pixi.environments]
+default = {features = ["dev", "tests"], solve-group="default"}
+
+[tool.pixi.feature.tests.tasks]
+tests = { cmd = "pytest -vsl tests" }
