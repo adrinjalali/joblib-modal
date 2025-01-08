@@ -33,7 +33,6 @@ And for a scikit-learn usage, you can do like the following:
   
     import joblib_modal  # noqa
     import modal
-    import modal
     import numpy 
     import joblib 
     import scipy
