@@ -1,4 +1,12 @@
-# Usage
+Installation
+============
+
+.. code-block:: bash
+
+    pip install joblib-modal
+
+Usage
+=====
 
 This library allows you to use `modal <https://modal.com/>`_ as a joblib backend.
 
