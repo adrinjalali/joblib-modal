@@ -16,7 +16,6 @@ It is particularly useful if you're running a ``GridSearchCV`` or similar with
 For direct joblib usage you can do:
 
 .. code-block:: python
-  :linenos:
   
     # This is needed to register the modal backend
     import joblib_modal  # noqa
@@ -29,7 +28,6 @@ For direct joblib usage you can do:
 And for a scikit-learn usage, you can do like the following:
 
 .. code-block:: python
-  :linenos:
   
     import joblib_modal  # noqa
     import modal
@@ -72,7 +70,6 @@ The backend is used via the ``joblib.parallel_config`` context manager, and in t
 case of this backend, the signature is:
 
 .. code-block:: python
-  :linenos:
 
     with parallel_config(
         backend="modal",
