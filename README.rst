@@ -80,18 +80,23 @@ case of this backend, the signature is:
         name: str = None,
         modal_output: bool = False,
         image: modal.Image = None,
+        modal_function_kwargs: dict = None,
     ):
         ...
 
-- ``n_jobs``: The number of jobs to run in parallel. This specifies the maximum number of
-  concurrent jobs submitted to `modal`_. Note that you're limited by your maximum number
-  of concurrent jobs in your modal account, and if that is exceeded, the jobs will be
-  queued up and run in order.
+- ``n_jobs``: The number of jobs to run in parallel. This specifies the maximum number
+  of concurrent jobs submitted to `modal`_. Note that you're limited by your maximum
+  number of concurrent jobs in your modal account, and if that is exceeded, the jobs
+  will be queued up and run in order.
 - ``name``: The name of the modal app. If not provided,
   ``f"modal-joblib-{uuid.uuid4()}"`` is used.
-- ``modal_output``: Whether to enable modal output. If enabled, the output of the jobs will
-  be captured and returned. This is equivalent to using the ``modal.enable_output()``
-  context manager.
+- ``modal_output``: Whether to enable modal output. If enabled, the output of the jobs
+  will be captured and returned. This is equivalent to using the
+  ``modal.enable_output()`` context manager.
 - ``image``: The modal image to use for the jobs. If not provided, a debian slim image
   with ``joblib`` installed is used. Your image should always have ``joblib`` installed
   and you should ideally replicate your local environment as closely as possible.
+  See `modal.Image <https://modal.com/docs/reference/modal.Image>`_ for more details.
+- ``modal_function_kwargs``: The kwargs to pass to the modal ``app.function()``
+  decorator. See `modal.App.function() <https://modal.com/docs/reference/modal.App>`_
+  for more details.

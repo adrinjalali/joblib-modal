@@ -17,10 +17,19 @@ class ModalBackend(ThreadingBackend):
     uses_threads = True
     supports_sharedmem = False
 
-    def __init__(self, *args, name=None, image=None, modal_output=False, **kwargs):
+    def __init__(
+        self,
+        *args,
+        name=None,
+        image=None,
+        modal_output=False,
+        modal_function_kwargs=None,
+        **kwargs,
+    ):
         super().__init__(*args, **kwargs)
         self.name = name
         self.image = image
+        self.modal_function_kwargs = modal_function_kwargs
         self.modal_output = modal_output
 
     def configure(self, n_jobs=1, parallel=None, **_):
@@ -42,7 +51,8 @@ class ModalBackend(ThreadingBackend):
         name = self.name or f"modal-joblib-{uuid.uuid4()}"
         self.modal_app = modal.App(name, image=image)
 
-        self.modal_executor = self.modal_app.function()(executor)
+        kwargs = self.modal_function_kwargs or {}
+        self.modal_executor = self.modal_app.function(**kwargs)(executor)
 
         if self.modal_output:
             self.output_ctx = modal.enable_output()
