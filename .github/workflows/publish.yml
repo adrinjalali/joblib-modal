@@ -40,11 +40,14 @@ jobs:
         twine check dist/*  # Add check to verify the built distributions
 
     - name: Publish package to TestPyPI
-      uses: pypa/gh-action-pypi-publish@v1.12.2
+      uses: pypa/gh-action-pypi-publish@v1.12.3
       with:
+        verbose: true
         repository-url: https://test.pypi.org/legacy/
       if: ${{ github.event.inputs.pypi_repo == 'testpypi' }}
 
     - name: Publish package to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.12.2
+      uses: pypa/gh-action-pypi-publish@v1.12.3
+      with:
+        verbose: true
       if: ${{ github.event.inputs.pypi_repo == 'pypi' }}
