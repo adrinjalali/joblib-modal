@@ -5,7 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "joblib_modal"
 requires-python = ">=3.10"
+description = "A Modal backend for Joblib"
 dynamic = ["version"]
+authors = [
+    { name="Adrin Jalali", email="adrin.jalali@gmail.com" },
+]
+readme = { file = "README.rst", content-type = "text/x-rst" }
+license = { file = "LICENSE" }
 dependencies = [
     "joblib",
     "modal"
